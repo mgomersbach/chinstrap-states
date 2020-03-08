@@ -1,0 +1,116 @@
+! Solarized pallete
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+! General Colors
+! Black
+*.color0  : S_base02
+*.color8  : S_base03
+! Red
+*.color1  : S_red
+*.color9  : S_orange
+! Green
+*.color2  : S_green
+*.color10 : S_base01
+! Yellow
+*.color3  : S_yellow
+*.color11 : S_base00
+! Blue
+*.color4  : S_blue
+*.color12 : S_base0
+! Magenta
+*.color5  : S_magenta
+*.color13 : S_violet
+! Cyan
+*.color6  : S_cyan 
+*.color14 : S_base1
+! White
+*.color7  : S_base2
+*.color15 : S_base3
+
+*.background             : S_base03
+*.foreground             : S_base0
+*.fadeColor              : S_base03
+*.cursorColor            : S_base1
+*.pointerColorBackground : S_base01
+*.pointerColorForeground : S_base1
+
+*.colorIT        : S_red
+*.colorBD        : S_base3
+*.colorUL        : S_cyan
+*.veryBoldColors : 6
+
+xscreensaver.Dialog.foreground             : S_base00
+xscreensaver.Dialog.background             : S_base03
+xscreensaver.Dialog.topShadowColor         : S_base02
+xscreensaver.Dialog.bottomShadowColor      : S_base02
+xscreensaver.Dialog.Button.foreground      : S_base00
+xscreensaver.Dialog.Button.background      : S_base03
+xscreensaver.Dialog.text.foreground        : S_base00
+xscreensaver.Dialog.text.background        : S_base03
+xscreensaver.passwd.thermometer.foreground : S_base00
+xscreensaver.passwd.thermometer.background : S_base03
+xscreensaver.Dialog.internalBorderWidth    : 24
+xscreensaver.Dialog.borderWidth            : 5
+xscreensaver.Dialog.shadowThickness        : 2
+xscreensaver.passwd.thermometer.width      : 8
+xscreensaver.dateFormat                    : %I:%M%P %a %b %d, %Y
+
+! General Settings
+URxvt.depth          : 32
+URxvt.geometry       : 90x30
+URxvt.transparent    : false
+URxvt.visualBell     : true
+URxvt.loginShell     : true
+URxvt.saveLines      : 50000
+URxvt.internalBorder : 3
+
+! Fonts
+URxvt.xftAntialias   : true
+URxvt*fading         : 40
+Xft.dpi              : 96
+Xft.antialias        : 1
+Xft.rgba             : rgb
+Xft.hinting          : 1
+Xft.hintstyle        : hintslight
+urxvt.letterSpace    : -1
+URxvt.font           : xft:Fira Code:style=Regular:pixelsize=13
+URxvt.boldFont       : xft:Fira Code:style=Bold:pixelsize=13
+URxvt.italicFont     : xft:Fira Code:style=Regular:pixelsize=13
+URxvt.bolditalicFont : xft:Fira Code:style=Bold:pixelsize=13
+XTerm*locale         : true
+XTerm*faceName       : Fira Code:size=13
+ 
+! Scrollbar
+URxvt.scrollStyle : rxvt
+URxvt.scrollBar   : false
+ 
+! Perl extensions
+URxvt.perl-ext       : default,matcher,font-size
+URxvt.matcher.button : 1
+URxvt.url-launcher   : firefox
+ 
+! Cursor
+URxvt.cursorBlink     : true
+URxvt.cursorUnderline : false
+ 
+! Pointer
+URxvt.pointerBlank : true
+
+! `font-size` plugin
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.keysym.C-equal: perl:font-size:increase

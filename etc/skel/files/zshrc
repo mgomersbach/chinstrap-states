@@ -1,0 +1,57 @@
+#!/bin/zsh
+
+# Load modules
+autoload -U colors compinit promptinit zkbd zmv zsh-mime-setup
+compinit
+promptinit
+zsh-mime-setup
+
+# Functions
+insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+zle -N insert-sudo insert_sudo
+
+## Key bindings
+# setup key accordingly
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+# override stubborn keys
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
+# prepend sudo with alt-f
+bindkey "^[f" insert-sudo
+
+# Correction
+setopt correctall
+setopt autocd
+
+# Completion
+zmodload zsh/complist
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+
+# History
+HISTSIZE="2000000"
+HISTFILE="$HOME/.history"
+SAVEHIST="$HISTSIZE"
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
+# Colors
+colors
+[ -f /etc/DIR_COLORS ] && eval $(dircolors -b /etc/DIR_COLORS)
+export ZLSCOLORS="${LS_COLORS}"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Prompt
+prompt gentoo
+
+#DISABLE_AUTO_TITLE="true"
+
+# Load oh-my-zsh
+source '/usr/share/zsh/site-contrib/oh-my-zsh/templates/zshrc.zsh-template'
