@@ -1,5 +1,6 @@
 base:
   '*':
+    - salt.standalone
     - timezone
     - etc.skel
     - sysctl.param
@@ -9,9 +10,10 @@ base:
     - openssh.config
     - openssh.known_hosts
     - resolver
-  'os:Gentoo':
-    - match : grain
     - gentoo.portage
+  'G@virtual:physical':
+    - match : compound
+    - grub
   'eselect:profile:chinstrap*':
     - match : grain
     - genkernel.config
