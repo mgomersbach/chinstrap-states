@@ -39,7 +39,6 @@ base:
     - php.mysql
     - php.xml
     - php.json
-    - prometheus
   'eselect:profile:chinstrap*buildhelper':
     - match : grain
     - nginx
@@ -52,7 +51,6 @@ base:
     - php.mysql
     - php.xml
     - php.json
-    - prometheus
   'eselect:profile:chinstrap*desktop':
     - match : grain
     - lightdm.config
@@ -69,4 +67,4 @@ base:
     - php.mysql
     - php.xml
     - php.json
-    - prometheus
+
