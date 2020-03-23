@@ -5,10 +5,9 @@
 {% if salt['pillar.get']('portage:chost') != salt['makeconf.get_chost']() %}
 set_chost:
   module.run:
+    - order: 1
     - makeconf.set_chost:
-      - name: set_chost
       - value: {{ salt['pillar.get']('portage:chost') }}
-      - order: 1
 {% endif %}
 {% endif %}
 
@@ -18,10 +17,9 @@ set_chost:
 {% if salt['pillar.get']('portage:cflags:set') != salt['makeconf.get_cflags']() %}
 set_cflags:
   module.run:
+    - order: 1
     - makeconf.set_cflags:
-      - name: set_cflags
       - value: {{ salt['pillar.get']('portage:cflags:set') }}
-      - order: 1
 {% endif %}
 {% endif %}
 
@@ -31,10 +29,9 @@ set_cflags:
 {% if salt['makeconf.get_cflags']() != "" %}
 reset_cflags:
   module.run:
+    - order: 2
     - makeconf.set_cflags:
-      - name: reset_cflags
       - value: ""
-      - order: 2
 {% endif %}
 {% endif %}
 
@@ -44,10 +41,9 @@ reset_cflags:
 {% if not salt['makeconf.cflags_contains'](cflag) %}
 present_{{ cflag }}_cflag:
   module.run:
+    - order: 3
     - makeconf.append_cflags:
-      - name: present_{{ cflag }}_cflag
       - value: {{ cflag }}
-      - order: 3
 {% endif %}
 {% endfor %}
 
@@ -57,10 +53,9 @@ present_{{ cflag }}_cflag:
 {% if salt['makeconf.cflags_contains'](cflag) %}
 absent_{{ cflag }}_cflag:
   module.run:
+    - order: 4
     - makeconf.trim_cflags:
-      - name: absent_{{ cflag }}_cflag
       - value: {{ cflag }}
-      - order: 4
 {% endif %}
 {% endfor %}
 
@@ -70,10 +65,9 @@ absent_{{ cflag }}_cflag:
 {% if salt['pillar.get']('portage:cxxflags:set') != salt['makeconf.get_cxxflags']() %}
 set_cxxflags:
   module.run:
+    - order: 1
     - makeconf.set_cxxflags:
-      - name: set_cxxflags
       - value: {{ salt['pillar.get']('portage:cxxflags:set') }}
-      - order: 1
 {% endif %}
 {% endif %}
 
@@ -83,10 +77,9 @@ set_cxxflags:
 {% if salt['makeconf.get_cxxflags']() != "" %}
 reset_cxxflags:
   module.run:
+    - order: 2
     - makeconf.set_cxxflags:
-      - name: reset_cxxflags
       - value: ""
-      - order: 2
 {% endif %}
 {% endif %}
 
@@ -96,10 +89,9 @@ reset_cxxflags:
 {% if not salt['makeconf.cxxflags_contains'](cxxflag) %}
 present_{{ cxxflag }}_cxxflag:
   module.run:
+    - order: 3
     - makeconf.append_cxxflags:
-      - name: present_{{ cxxflag }}_cxxflag
       - value: {{ cxxflag }}
-      - order: 3
 {% endif %}
 {% endfor %}
 
@@ -109,10 +101,9 @@ present_{{ cxxflag }}_cxxflag:
 {% if salt['makeconf.cxxflags_contains'](cxxflag) %}
 absent_{{ cxxflag }}_cxxflag:
   module.run:
+    - order: 4
     - makeconf.trim_cxxflags:
-      - name: absent_{{ cxxflag }}_cxxflag
       - value: {{ cxxflag }}
-      - order: 4
 {% endif %}
 {% endfor %}
 
@@ -122,10 +113,9 @@ absent_{{ cxxflag }}_cxxflag:
 {% if salt['pillar.get']('portage:makeopts:set') != salt['makeconf.get_makeopts']() %}
 set_makeopts:
   module.run:
+    - order: 1
     - makeconf.set_makeopts:
-      - name: set_makeopts
       - value: {{ salt['pillar.get']('portage:makeopts:set') }}
-      - order: 1
 {% endif %}
 {% endif %}
 
@@ -135,10 +125,9 @@ set_makeopts:
 {% if salt['makeconf.get_makeopts']() != "" %}
 reset_makeopts:
   module.run:
+    - order: 2
     - makeconf.set_makeopts:
-      - name: reset_makeopts
       - value: ""
-      - order: 2
 {% endif %}
 {% endif %}
 
@@ -148,10 +137,9 @@ reset_makeopts:
 {% if not salt['makeconf.makeopts_contains'](makeopt) %}
 present_{{ makeopt }}_makeopt:
   module.run:
+    - order: 3
     - makeconf.append_makeopts:
-      - name: present_{{ makeopt }}_makeopt
       - value: {{ makeopt }}
-      - order: 3
 {% endif %}
 {% endfor %}
 
@@ -161,10 +149,9 @@ present_{{ makeopt }}_makeopt:
 {% if salt['makeconf.makeopts_contains'](makeopt) %}
 absent_{{ makeopt }}_makeopt:
   module.run:
+    - order: 4
     - makeconf.trim_makeopts:
-      - name: absent_{{ makeopt }}_makeopt
       - value: {{ makeopt }}
-      - order: 4
 {% endif %}
 {% endfor %}
 
@@ -174,10 +161,9 @@ absent_{{ makeopt }}_makeopt:
 {% if salt['pillar.get']('portage:emerge_default_opts:set') != salt['makeconf.get_emerge_default_opts']() %}
 set_emerge_default_opts:
   module.run:
+    - order: 1
     - makeconf.set_emerge_default_opts:
-      - name: set_emerge_default_opts
       - value: {{ salt['pillar.get']('portage:emerge_default_opts:set') }}
-      - order: 1
 {% endif %}
 {% endif %}
 
@@ -187,10 +173,9 @@ set_emerge_default_opts:
 {% if salt['makeconf.get_emerge_default_opts']() != "" %}
 reset_emerge_default_opts:
   module.run:
+    - order: 2
     - makeconf.set_emerge_default_opts:
-      - name: reset_emerge_default_opts
       - value: ""
-      - order: 2
 {% endif %}
 {% endif %}
 
@@ -200,10 +185,9 @@ reset_emerge_default_opts:
 {% if not salt['makeconf.emerge_default_opts_contains'](emerge_opt) %}
 present_{{ emerge_opt }}_emerge_opt:
   module.run:
+    - order: 3
     - makeconf.append_emerge_default_opts:
-      - name: present_{{ emerge_opt }}_emerge_opt
       - value: {{ emerge_opt }}
-      - order: 3
 {% endif %}
 {% endfor %}
 
@@ -213,10 +197,9 @@ present_{{ emerge_opt }}_emerge_opt:
 {% if salt['makeconf.emerge_default_opts_contains'](emerge_opt) %}
 absent_{{ emerge_opt }}_emerge_opt:
   module.run:
+    - order: 4
     - makeconf.trim_emerge_default_opts:
-      - name: absent_{{ emerge_opt }}_emerge_opt
       - value: {{ emerge_opt }}
-      - order: 4
 {% endif %}
 {% endfor %}
 
@@ -226,10 +209,9 @@ absent_{{ emerge_opt }}_emerge_opt:
 {% if salt['pillar.get']('portage:features:set') != salt['makeconf.get_features']() %}
 set_features:
   module.run:
+    - order: 1
     - makeconf.set_features:
-      - name: set_features
       - value: {{ salt['pillar.get']('portage:features:set') }}
-      - order: 1
 {% endif %}
 {% endif %}
 
@@ -239,10 +221,9 @@ set_features:
 {% if salt['makeconf.get_features']() != "" %}
 reset_features:
   module.run:
+    - order: 2
     - makeconf.set_features:
-      - name: reset_features
       - value: ""
-      - order: 2
 {% endif %}
 {% endif %}
 
@@ -252,10 +233,9 @@ reset_features:
 {% if not salt['makeconf.features_contains'](feature) %}
 present_{{ feature }}_feature:
   module.run:
+    - order: 3
     - makeconf.append_features:
-      - name: present_{{ feature }}_feature
       - value: {{ feature }}
-      - order: 3
 {% endif %}
 {% endfor %}
 
@@ -265,10 +245,9 @@ present_{{ feature }}_feature:
 {% if salt['makeconf.features_contains'](feature) %}
 absent_{{ feature }}_feature:
   module.run:
+    - order: 4
     - makeconf.trim_features:
-      - name: absent_{{ feature }}_feature
       - value: {{ feature }}
-      - order: 4
 {% endif %}
 {% endfor %}
 
@@ -278,10 +257,9 @@ absent_{{ feature }}_feature:
 {% if salt['pillar.get']('portage:gentoo_mirrors:set') != salt['makeconf.get_gentoo_mirrors']() %}
 set_gentoo_mirrors:
   module.run:
+    - order: 1
     - makeconf.set_gentoo_mirrors:
-      - name: set_gentoo_mirrors
       - value: {{ salt['pillar.get']('portage:gentoo_mirrors:set') }}
-      - order: 1
 {% endif %}
 {% endif %}
 
@@ -291,10 +269,9 @@ set_gentoo_mirrors:
 {% if salt['makeconf.get_gentoo_mirrors']() != "" %}
 reset_gentoo_mirrors:
   module.run:
+    - order: 2
     - makeconf.set_gentoo_mirrors:
-      - name: reset_gentoo_mirrors
       - value: ""
-      - order: 2
 {% endif %}
 {% endif %}
 
@@ -304,10 +281,9 @@ reset_gentoo_mirrors:
 {% if not salt['makeconf.gentoo_mirrors_contains'](mirror) %}
 present_{{ mirror }}_mirror:
   module.run:
+    - order: 3
     - makeconf.append_gentoo_mirrors:
-      - name: present_{{ mirror }}_mirror
       - value: {{ mirror }}
-      - order: 3
 {% endif %}
 {% endfor %}
 
@@ -317,10 +293,9 @@ present_{{ mirror }}_mirror:
 {% if salt['makeconf.gentoo_mirrors_contains'](mirror) %}
 absent_{{ mirror }}_mirror:
   module.run:
+    - order: 4
     - makeconf.trim_gentoo_mirrors:
-      - name: absent_{{ mirror }}_mirror
       - value: {{ mirror }}
-      - order: 4
 {% endif %}
 {% endfor %}
 
