@@ -311,11 +311,10 @@ absent_{{ mirror }}_mirror:
 {% if setval != salt['makeconf.get_var'](var.upper()) %}
 set_{{ var }}_extra_vars:
   module.run:
+    - order: 5
     - makeconf.set_var:
-      - name: set_{{ var }}_extra_vars
       - var: {{ var.upper() }}
       - value: {{ setval }}
-      - order: 5
 {% endif %}
 {% endif %}
 
@@ -323,11 +322,10 @@ set_{{ var }}_extra_vars:
 {% if resetval == True %}
 reset_{{ var }}_extra_vars:
   module.run:
+    - order: 6
     - makeconf.set_var:
-      - name: reset_{{ var }}_extra_vars
       - var: {{ var.upper() }}
       - value: ""
-      - order: 6
 {% endif %}
 
 # Present
@@ -335,11 +333,10 @@ reset_{{ var }}_extra_vars:
 {% if not salt['makeconf.var_contains'](var.upper(), val) %}
 present_{{ var }}_{{ val }}_extra_vars:
   module.run:
+    - order: 7
     - makeconf.append_var:
-      - name: present_{{ var }}_{{ val }}_extra_vars
       - var: {{ var.upper() }}
       - value: {{ val }}
-      - order: 7
 {% endif %}
 {% endfor %}
 
@@ -348,11 +345,10 @@ present_{{ var }}_{{ val }}_extra_vars:
 {% if salt['makeconf.var_contains'](var.upper(), val) %}
 absent_{{ var }}_{{ val }}_extra_vars:
   module.run:
+    - order: 8
     - makeconf.trim_var:
-      - name: absent_{{ var }}_{{ val }}_extra_vars
       - var: {{ var.upper() }}
       - value: {{ val }}
-      - order: 8
 {% endif %}
 {% endfor %}
 
