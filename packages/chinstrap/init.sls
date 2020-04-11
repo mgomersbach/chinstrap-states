@@ -11,3 +11,12 @@ install_{{ pset }}_{{ package }}_package:
     - name: {{ package }}
 {% endfor %}
 {% endfor %}
+
+# Packages to pre-build
+{% for pset in salt['pillar.get']('chinstrap:bpkgs') %}
+{% for package in salt['pillar.get']('chinstrap:bpkgs:' + pset) %}
+install_{{ pset }}_{{ package }}_package:
+  pkg.installed:
+    - name: {{ package }}
+{% endfor %}
+{% endfor %}
