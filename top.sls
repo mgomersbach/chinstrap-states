@@ -12,10 +12,10 @@ base:
     - resolver
     - gentoo.portage
   'G@virtual:physical':
-    - match : compound
+    - match: compound
     - grub
   'eselect:profile:chinstrap*':
-    - match : grain
+    - match: grain
     - genkernel.config
     - packages.chinstrap
     - iptables
@@ -25,10 +25,10 @@ base:
     - postfix.config
     - rsyslog
   'G@cpu_flags:rdrand and G@eselect:profile:chinstrap*':
-    - match : compound
+    - match: compound
     - rng-tools
   'eselect:profile:chinstrap*server':
-    - match : grain
+    - match: grain
     - nginx
     - php
     - php.fpm
@@ -40,7 +40,7 @@ base:
     - php.xml
     - php.json
   'eselect:profile:chinstrap*buildhelper':
-    - match : grain
+    - match: grain
     - nginx
     - php
     - php.fpm
@@ -52,10 +52,10 @@ base:
     - php.xml
     - php.json
   'eselect:profile:chinstrap*desktop':
-    - match : grain
+    - match: grain
     - lightdm.config
   'eselect:profile:chinstrap*markws':
-    - match : grain
+    - match: grain
     - lightdm.config
     - nginx
     - php
@@ -67,4 +67,3 @@ base:
     - php.mysql
     - php.xml
     - php.json
-
