@@ -12,7 +12,7 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 import re
-import platform
+import distro
 import shutil
 
 if __name__ == "__main__":
@@ -38,7 +38,7 @@ else:
 def __virtual__():
     """Check for Gentoo family and platform cpuid2cpuflags tool."""
 
-    if "Gentoo" in platform.linux_distribution()[0]:
+    if "Gentoo" in distro.linux_distribution()[0]:
         if shutil.which("cpuid2cpuflags") is not None:
             return "native_cpu"
     return (

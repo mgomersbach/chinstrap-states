@@ -11,7 +11,7 @@
 
 from __future__ import absolute_import, print_function, unicode_literals
 
-import platform
+import distro
 
 if __name__ == "__main__":
     import salt.config
@@ -36,7 +36,7 @@ else:
 
 def __virtual__():
     """Check for Gentoo family."""
-    if "Gentoo" in platform.linux_distribution()[0]:
+    if "Gentoo" in distro.linux_distribution()[0]:
         return "eselect_grain"
     return (False, "This is not a Gentoo family OS")
 
