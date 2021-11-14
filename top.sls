@@ -1,6 +1,5 @@
 base:
   '*':
-    - salt.standalone
     - timezone
     - etc.skel
     - sysctl.param
