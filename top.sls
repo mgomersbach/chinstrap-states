@@ -10,6 +10,7 @@ base:
     - openssh.known_hosts
     - resolver
     - gentoo.portage
+    - etc.fstab
   'G@virtual:physical':
     - match: compound
     - grub
