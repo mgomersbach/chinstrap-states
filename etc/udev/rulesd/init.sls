@@ -59,3 +59,29 @@ steam_udev_rule:
         KERNEL=="uinput", SUBSYSTEM=="misc", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
         KERNEL=="hidraw*", ATTRS{idVendor}=="28de", MODE="0666"
         KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"
+
+allwinner_udev_rule:
+  file.managed:
+    - name: /etc/udev/rules.d/70-allwinner.rules
+    - contents: |
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="1f3a", ATTRS{idProduct}=="efe8", GROUP="plugdev", MODE="0660" SYMLINK+="usb-chip"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="1010", GROUP="plugdev", MODE="0660" SYMLINK+="usb-chip-fastboot"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="1f3a", ATTRS{idProduct}=="1010", GROUP="plugdev", MODE="0660" SYMLINK+="usb-chip-fastboot"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", GROUP="plugdev", MODE="0660" SYMLINK+="usb-serial-adapter"
+
+osvrhdk_udev_rule:
+  file.managed:
+    - name: /etc/udev/rules.d/70-osvrhdk.rules
+    - contents: |
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="1532", ATTRS{idProduct}=="0b00", MODE="0660", GROUP="plugdev"
+        KERNEL=="hidraw*", ATTRS{busnum}=="1", ATTRS{idVendor}=="1532", ATTRS{idProduct}=="0b00", MODE="0660", GROUP="plugdev"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="1532", ATTRS{idProduct}=="0b00", ENV{ID_MM_DEVICE_IGNORE}="1"
+        SUBSYSTEM=="tty", ATTRS{idVendor}=="1532", ATTRS{idProduct}=="0b00", SYMLINK+="ttyUSB.OSVRHDK"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0515", ENV{ID_MM_DEVICE_IGNORE}="1"
+        SUBSYSTEM=="tty", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0515", SYMLINK+="ttyUSB.zSight"
+
+g815_udev_rule:
+  file.managed:
+    - name: /etc/udev/rules.d/70-g815.rules
+    - contents: |
+        ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33f", MODE="666" RUN+="/usr/bin/g815-led -p /etc/g810-led/profile"
