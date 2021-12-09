@@ -12,6 +12,7 @@ base:
     - gentoo.portage
     - etc.fstab
     - etc.locald
+    - etc.udev.rulesd
   'G@virtual:physical':
     - match: compound
     - grub
