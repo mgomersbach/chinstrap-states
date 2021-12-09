@@ -1,4 +1,4 @@
-{% for disk in salt['grains.get']('disks', '') %} 
+{% for disk in salt['grains.get']('disks', '') %}
 {% if disk.startswith('hd') %}
 set_spinning_{{ disk }}_bfq_scheduler_on_boot:
   file.managed:
@@ -10,7 +10,7 @@ set_spinning_{{ disk }}_bfq_scheduler_on_boot:
 {% endif %}
 {% endfor %}
 
-{% for disk in salt['grains.get']('ssds', '') %} 
+{% for disk in salt['grains.get']('ssds', '') %}
 {% if disk.startswith('sd') %}
 set_ssd_{{ disk }}_deadline_scheduler_on_boot:
   file.managed:
