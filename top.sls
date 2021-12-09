@@ -11,6 +11,7 @@ base:
     - resolver
     - gentoo.portage
     - etc.fstab
+    - etc.locald
   'G@virtual:physical':
     - match: compound
     - grub
