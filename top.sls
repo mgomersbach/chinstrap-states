@@ -13,6 +13,9 @@ base:
     - etc.fstab
     - etc.locald
     - etc.udev.rulesd
+  '* and not G@virtual:physical':
+    - match: compound
+    - etc.virtual
   'G@virtual:physical':
     - match: compound
     - grub
