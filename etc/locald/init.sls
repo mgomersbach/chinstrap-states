@@ -1,6 +1,7 @@
+
 set_powersave_on_boot:
   file.managed:
-    - name: /etc/local.d/autopowertop
+    - name: /etc/local.d/autopowertop.start
     - mode: 544
     - contents: |
         #!/bin/bash

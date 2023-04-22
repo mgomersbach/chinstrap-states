@@ -44,22 +44,10 @@ base:
     - php.mysql
     - php.xml
     - php.json
-  'eselect:profile:chinstrap*buildhelper':
-    - match: grain
-    - nginx
-    - php
-    - php.fpm
-    - php.apcu
-    - php.curl
-    - php.gd
-    - php.mcrypt
-    - php.mysql
-    - php.xml
-    - php.json
   'eselect:profile:chinstrap*desktop':
     - match: grain
     - lightdm.config
-  'eselect:profile:chinstrap*markws':
+  'eselect:profile:chinstrap*workstation':
     - match: grain
     - lightdm.config
     - nginx
