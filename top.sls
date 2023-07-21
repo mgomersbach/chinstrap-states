@@ -11,14 +11,14 @@ base:
     - resolver
     - gentoo.portage
     - etc.fstab
-    - etc.locald
-    - etc.udev.rulesd
+    - etc.udev.rulesd.defaultio
   '* and not G@virtual:physical':
     - match: compound
     - etc.virtual
   'G@virtual:physical':
     - match: compound
     - grub
+    - etc.locald
   'eselect:profile:chinstrap*':
     - match: grain
     - genkernel.config
