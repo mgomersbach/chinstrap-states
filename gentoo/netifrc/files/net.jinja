@@ -1,0 +1,12 @@
+# Do not modify, this file is managed from Salt
+
+{% set config_values = {} -%}
+{% for item in salt['pillar.get']('netifrc:config', {}) -%}
+  {% for key, value in item.items() -%}
+    {% set _ = config_values.update({key: value}) -%}
+  {% endfor -%}
+{% endfor -%}
+
+{% for key, value in config_values.items() -%}
+{{ key() }}="{{ value }}"
+{% endfor -%}
