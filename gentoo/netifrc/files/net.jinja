@@ -1,12 +1,17 @@
 # Do not modify, this file is managed from Salt
 
-{% set config_values = {} -%}
-{% for item in salt['pillar.get']('netifrc:config', {}) -%}
-{% for key, value in item.items() -%}
-{% set _ = config_values.update({key: value}) -%}
-{% endfor -%}
-{% endfor -%}
+{% set config_values = {} %}
+{% for item in salt['pillar.get']('netifrc:config', {}) %}
+{% for key, value in item.items() %}
+{% if 'config_' in key or 'routes_' in key %}
+# Treat the value as a list and join with newlines for formatting.
+{% set _ = config_values.update({key: value|join('\n\t')}) %}
+{% else %}
+{% set _ = config_values.update({key: value}) %}
+{% endif %}
+{% endfor %}
+{% endfor %}
 
-{% for key, value in config_values.items() -%}
+{% for key, value in config_values.items() %}
 {{ key }}="{{ value }}"
-{% endfor -%}
+{% endfor %}
