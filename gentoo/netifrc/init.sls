@@ -10,5 +10,3 @@ netifrc-config:
     - mode: 644
     - user: root
     - group: root
-    - require:
-      - pkg: netifrc-pkg
