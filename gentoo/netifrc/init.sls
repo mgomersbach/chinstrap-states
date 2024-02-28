@@ -1,3 +1,7 @@
+netifrc-pkg:
+  pkg.installed:
+    - name: net-misc/netifrc
+
 netifrc-config:
   file.managed:
     - name: /etc/conf.d/net
@@ -8,8 +12,3 @@ netifrc-config:
     - group: root
     - require:
       - pkg: netifrc-pkg
-      - file: /etc/conf.d/net
-
-netifrc-pkg:
-  pkg.installed:
-    - name: net-misc/netifrc
