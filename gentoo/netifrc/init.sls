@@ -7,5 +7,9 @@ netifrc-config:
     - user: root
     - group: root
     - require:
-      - pkg: net-misc/netifrc
+      - pkg: netifrc-pkgs
       - file: /etc/conf.d/net
+
+netifrc-pkg:
+  pkg.installed:
+    - name: net-misc/netifrc
