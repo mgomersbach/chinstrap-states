@@ -22,6 +22,8 @@ if __name__ == "__main__":
     __utils__ = salt.loader.utils(__opts__)
     __salt__ = salt.loader.minion_mods(__opts__, utils=__utils__)
 else:
+    import salt.modules.network
+
     __salt__ = {
         "network.interfaces": salt.modules.network.interfaces,
     }
