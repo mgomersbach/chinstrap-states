@@ -38,7 +38,7 @@ else:
 def __virtual__():
     """Check for Gentoo family and platform cpuid2cpuflags tool."""
 
-    if "Gentoo" in distro.linux_distribution()[0]:
+    if "gentoo" in distro.id():
         if shutil.which("cpuid2cpuflags") is not None:
             return "native_cpu"
     return (
@@ -54,14 +54,10 @@ def _get_cflags():
     .. code-block:: bash
         salt '*' native_cpu.get_cflags
     """
-    gccout = __salt__["cmd.run"](
-        "gcc -### -E - -march=native", python_shell=False
-    )
+    gccout = __salt__["cmd.run"]("gcc -### -E - -march=native", python_shell=False)
     pattern = r"cc1.*\""
     out = re.findall(pattern, gccout)
-    nomno = [
-        i for i in out[0].replace('"', "").split(" ")[4:] if "-mno-" not in i
-    ]
+    nomno = [i for i in out[0].replace('"', "").split(" ")[4:] if "-mno-" not in i]
     cflags = []
     i = 0
     while i < len(nomno):

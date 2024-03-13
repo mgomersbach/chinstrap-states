@@ -36,7 +36,7 @@ else:
 
 def __virtual__():
     """Check for Gentoo family."""
-    if "Gentoo" in distro.linux_distribution()[0]:
+    if "gentoo" in distro.id():
         return "eselect_grain"
     return (False, "This is not a Gentoo family OS")
 
@@ -92,9 +92,7 @@ def _get_modules():
         salt '*' eselect.get_modules
     """
     modules = []
-    module_list = _exec_action(
-        "modules", "list", action_parameter="--only-names"
-    )
+    module_list = _exec_action("modules", "list", action_parameter="--only-names")
     if not module_list:
         return None
 
@@ -113,9 +111,7 @@ def _get_target_list(module, action_parameter=None):
     action_parameter
         additional params passed to the defined action
     """
-    exec_output = _exec_action(
-        module, "list", action_parameter=action_parameter
-    )
+    exec_output = _exec_action(module, "list", action_parameter=action_parameter)
 
     if not exec_output:
         return None
