@@ -22,10 +22,10 @@ if __name__ == "__main__":
     __utils__ = salt.loader.utils(__opts__)
     __salt__ = salt.loader.minion_mods(__opts__, utils=__utils__)
 else:
-    import salt.modules.network
+    import salt.utils.network
 
     __salt__ = {
-        "network.interfaces": salt.modules.network.interfaces,
+        "network.interfaces": salt.utils.network.interfaces,
     }
 
 
@@ -33,10 +33,22 @@ def __virtual__():
     return "network"
 
 
-def network_update():
+def _get_network():
+    """List network interfaces and their details.
+
+    CLI Example:
+    .. code-block:: bash
+        salt '*' network.get_network
+    """
     network = {}
     for interface, details in __salt__["network.interfaces"]().items():
         network[interface] = details
+    return network
+
+
+def network_update():
+    network = _get_network()
+
     return {"network": network}
 
 
