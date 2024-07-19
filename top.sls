@@ -40,7 +40,6 @@ base:
     - php.apcu
     - php.curl
     - php.gd
-    - php.mcrypt
     - php.mysql
     - php.xml
     - php.json
@@ -56,7 +55,6 @@ base:
     - php.apcu
     - php.curl
     - php.gd
-    - php.mcrypt
     - php.mysql
     - php.xml
     - php.json
