@@ -21,7 +21,6 @@ base:
     - etc.locald
   'eselect:profile:chinstrap*':
     - match: grain
-    - genkernel.config
     - packages.chinstrap
     - iptables
     - chrony
